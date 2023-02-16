@@ -1,4 +1,4 @@
-const errors = require('nexo-npm-error');
+const errors = require('nexo-npm-node-errors');
 
 errors.refreshTime(60000);
 
