@@ -1,5 +1,5 @@
 {
-  "name": "@ismx-pomera/pomera",
+  "name": "mobility-base-test",
   "version": "1.1.25",
   "description": "",
   "main": "index.js",
@@ -8,11 +8,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ismx-nexo/node": "^1.0.17",
-    "nexo-npm-api": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-api.git",
-    "nexo-npm-errors": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-errors.git",
-    "nexo-npm-mongo": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-mongo.git",
-    "nexo-npm-router": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-router.git"
+    "nexo-npm-node-sqlite": "github:YonarRamos/nexo-npm-node-sqlite"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
