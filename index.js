@@ -1,4 +1,4 @@
-const mongo = require("./src/sqlite");
+const sqlite = require("./src/sqlite");
 
 module.exports = {
     sqlite
