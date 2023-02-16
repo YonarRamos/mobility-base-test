@@ -8,6 +8,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nexo-npm-node-errors": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-node-errors.git",
     "nexo-npm-node-logger": "git+https://otd.ibl-inetum.services/bitbucket/scm/nexo-npm/nexo-npm-node-logger.git",
     "nexo-npm-node-sqlite": "git+https://github.com/YonarRamos/nexo-npm-node-sqlite.git"
   },
