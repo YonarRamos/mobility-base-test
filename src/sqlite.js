@@ -13,6 +13,5 @@ mongo.onFailure((err) => {
     logger.e("Unable to connect to the database", err)
 });
  */
-sqlite.initialize();
 
-module.exports = sqlite;
+module.exports = sqlite.initialize();
