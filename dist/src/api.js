@@ -51,4 +51,4 @@ function transformId(entity) {
   entity._id = undefined;
   return entity;
 }
-module.exports = api;
+module.exports = _api;
