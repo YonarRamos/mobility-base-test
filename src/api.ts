@@ -1,37 +1,37 @@
-const api = require('nexo-npm-node-api');
-const api_logger = require('nexo-npm-node-logger');
-const api_errors = require('nexo-npm-node-errors');
+const _api = require('nexo-npm-node-api');
+const _logger = require('nexo-npm-node-logger');
+const _errors = require('nexo-npm-node-errors');
 
-api.port(9000);
+_api.port(9000);
 
-api.onInitialize((port) => {
-    api_logger.i(`-- SERVER RUNNING ON PORT ${port} --`);
+_api.onInitialize((port) => {
+    _logger.i(`-- SERVER RUNNING ON PORT ${port} --`);
 });
 
-api.onRequest((request) => {
-    api_logger.i(`- INIT - (${request.id}) ${request.method} ${request.endpoint}`);
+_api.onRequest((request) => {
+    _logger.i(`- INIT - (${request.id}) ${request.method} ${request.endpoint}`);
 });
 
-api.onResponse(( request, data ) => {
-    return ({ ...api_errors.get("0"), data: transformId(data) });
+_api.onResponse(( request, data ) => {
+    return ({ ..._errors.get("0"), data: transformId(data) });
 });
 
-api.onError(( request, error ) => {
+_api.onError(( request, error ) => {
     if (error.code && error.description) {
-        api_logger.i(`- THROW - (${request.id}) ${request.method} ${request.endpoint} -- ${error.description}`);
+        _logger.i(`- THROW - (${request.id}) ${request.method} ${request.endpoint} -- ${error.description}`);
         return ({ code: error.code, description: error.description });
     } else {
-        api_logger.i(`- THROW - (${request.id}) ${request.method} ${request.endpoint} -- ${error}`);
-        return ({ ...api_errors.get("-1") });
+        _logger.i(`- THROW - (${request.id}) ${request.method} ${request.endpoint} -- ${error}`);
+        return ({ ..._errors.get("-1") });
     }
 });
 
-api.onFallback((request) => {
+_api.onFallback((request) => {
     return ({ code: -1, description: "Method not found" })
 })
 
-api.onEnd((request, response) => {
-    api_logger.i(`- END - (${request.id}) ${request.method} ${request.endpoint} with code ${response.code} in ${Number(new Date()) - request.timestamp}ms`);
+_api.onEnd((request, response) => {
+    _logger.i(`- END - (${request.id}) ${request.method} ${request.endpoint} with code ${response.code} in ${Number(new Date()) - request.timestamp}ms`);
 });
 
 // Función que transforma el identificador de mongo en un identificador genérico

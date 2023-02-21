@@ -6,41 +6,41 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-var api = require('nexo-npm-node-api');
-var api_logger = require('nexo-npm-node-logger');
-var api_errors = require('nexo-npm-node-errors');
-api.port(9000);
-api.onInitialize(function (port) {
-  api_logger.i("-- SERVER RUNNING ON PORT ".concat(port, " --"));
+var _api = require('nexo-npm-node-api');
+var _logger = require('nexo-npm-node-logger');
+var _errors = require('nexo-npm-node-errors');
+_api.port(9000);
+_api.onInitialize(function (port) {
+  _logger.i("-- SERVER RUNNING ON PORT ".concat(port, " --"));
 });
-api.onRequest(function (request) {
-  api_logger.i("- INIT - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint));
+_api.onRequest(function (request) {
+  _logger.i("- INIT - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint));
 });
-api.onResponse(function (request, data) {
-  return _objectSpread(_objectSpread({}, api_errors.get("0")), {}, {
+_api.onResponse(function (request, data) {
+  return _objectSpread(_objectSpread({}, _errors.get("0")), {}, {
     data: transformId(data)
   });
 });
-api.onError(function (request, error) {
+_api.onError(function (request, error) {
   if (error.code && error.description) {
-    api_logger.i("- THROW - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " -- ").concat(error.description));
+    _logger.i("- THROW - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " -- ").concat(error.description));
     return {
       code: error.code,
       description: error.description
     };
   } else {
-    api_logger.i("- THROW - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " -- ").concat(error));
-    return _objectSpread({}, api_errors.get("-1"));
+    _logger.i("- THROW - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " -- ").concat(error));
+    return _objectSpread({}, _errors.get("-1"));
   }
 });
-api.onFallback(function (request) {
+_api.onFallback(function (request) {
   return {
     code: -1,
     description: "Method not found"
   };
 });
-api.onEnd(function (request, response) {
-  api_logger.i("- END - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " with code ").concat(response.code, " in ").concat(Number(new Date()) - request.timestamp, "ms"));
+_api.onEnd(function (request, response) {
+  _logger.i("- END - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " with code ").concat(response.code, " in ").concat(Number(new Date()) - request.timestamp, "ms"));
 });
 
 // Función que transforma el identificador de mongo en un identificador genérico
