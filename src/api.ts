@@ -43,4 +43,4 @@ function transformId(entity) {
     return entity;
 }
 
-module.exports = api;
+module.exports = _api;
