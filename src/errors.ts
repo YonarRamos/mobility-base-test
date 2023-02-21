@@ -1,8 +1,8 @@
-const errors = require('nexo-npm-node-errors');
+const myErrors = require('nexo-npm-node-errors');
 
-errors.refreshTime(60000);
+myErrors.refreshTime(60000);
 
-errors.source(() => {
+myErrors.source(() => {
 
     let dict = ({
         "-1": { code: "-1", description: "Internal error" },
@@ -20,21 +20,21 @@ errors.source(() => {
         "201": { code: "201", description: "Otro error" }
     });
 
-    errors.queryCode("1");
-    errors.bodyCode("2");
-    errors.headerCode("3");
-    errors.typeCode("4");
-    errors.nullCode("5");
-    errors.regexCode("6");
-    errors.dateCode("7");
+    myErrors.queryCode("1");
+    myErrors.bodyCode("2");
+    myErrors.headerCode("3");
+    myErrors.typeCode("4");
+    myErrors.nullCode("5");
+    myErrors.regexCode("6");
+    myErrors.dateCode("7");
 
-    errors.fallback(dict["-1"])
+    myErrors.fallback(dict["-1"])
 
     return dict;
 })
 
-errors.fallback({ code: -9, description: "Fallback error not found" })
+myErrors.fallback({ code: -9, description: "Fallback error not found" })
 
-errors.initialize();
+myErrors.initialize();
 
-module.exports = errors;
+module.exports = myErrors;
