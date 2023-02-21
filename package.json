@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nexo-npm-node-api": "github:YonarRamos/nexo-npm-node-api",
     "nexo-npm-node-errors": "github:YonarRamos/nexo-npm-node-errors",
     "nexo-npm-node-logger": "github:YonarRamos/nexo-npm-node-logger",
     "nexo-npm-node-sqlite": "github:YonarRamos/nexo-npm-node-sqlite",
