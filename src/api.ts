@@ -2,18 +2,18 @@ const _api = require('nexo-npm-node-api');
 const _logger = require('nexo-npm-node-logger');
 const _errors = require('nexo-npm-node-errors');
 
-_api.port(9000);
+_api.port(8080);
 
-_api.onInitialize((port) => {
-    _logger.i(`-- SERVER RUNNING ON PORT ${port} --`);
+_api.onInitialize((port:number) => {
+   return _logger.i(`-- SERVER RUNNING ON PORT ${port} --`);
 });
 
 _api.onRequest((request) => {
-    _logger.i(`- INIT - (${request.id}) ${request.method} ${request.endpoint}`);
+   return _logger.i(`- INIT - (${request.id}) ${request.method} ${request.endpoint}`);
 });
 
 _api.onResponse(( request, data ) => {
-    return ({ ..._errors.get("0"), data: transformId(data) });
+    return ({ ..._errors.get("0"), data });
 });
 
 _api.onError(( request, error ) => {
@@ -31,7 +31,7 @@ _api.onFallback((request) => {
 })
 
 _api.onEnd((request, response) => {
-    _logger.i(`- END - (${request.id}) ${request.method} ${request.endpoint} with code ${response.code} in ${Number(new Date()) - request.timestamp}ms`);
+   return _logger.i(`- END - (${request.id}) ${request.method} ${request.endpoint} with code ${response.code} in ${Number(new Date()) - request.timestamp}ms`);
 });
 
 // Función que transforma el identificador de mongo en un identificador genérico

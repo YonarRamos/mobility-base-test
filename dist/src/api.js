@@ -9,16 +9,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 var _api = require('nexo-npm-node-api');
 var _logger = require('nexo-npm-node-logger');
 var _errors = require('nexo-npm-node-errors');
-_api.port(9000);
+_api.port(8080);
 _api.onInitialize(function (port) {
-  _logger.i("-- SERVER RUNNING ON PORT ".concat(port, " --"));
+  return _logger.i("-- SERVER RUNNING ON PORT ".concat(port, " --"));
 });
 _api.onRequest(function (request) {
-  _logger.i("- INIT - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint));
+  return _logger.i("- INIT - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint));
 });
 _api.onResponse(function (request, data) {
   return _objectSpread(_objectSpread({}, _errors.get("0")), {}, {
-    data: transformId(data)
+    data: data
   });
 });
 _api.onError(function (request, error) {
@@ -40,7 +40,7 @@ _api.onFallback(function (request) {
   };
 });
 _api.onEnd(function (request, response) {
-  _logger.i("- END - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " with code ").concat(response.code, " in ").concat(Number(new Date()) - request.timestamp, "ms"));
+  return _logger.i("- END - (".concat(request.id, ") ").concat(request.method, " ").concat(request.endpoint, " with code ").concat(response.code, " in ").concat(Number(new Date()) - request.timestamp, "ms"));
 });
 
 // Función que transforma el identificador de mongo en un identificador genérico

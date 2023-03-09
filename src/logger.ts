@@ -1,13 +1,13 @@
-const myLogger =  require('nexo-npm-node-logger');
+const logger_ =  require('nexo-npm-node-logger');
 
-myLogger.onError((error, { filename, line, column, timestamp }) => {
-
-});
-
-myLogger.onLogged((type, msg, context) => {
+logger_.onError((error, { filename, line, column, timestamp }) => {
 
 });
 
-myLogger.withFormat((type, msg, context) => msg)
+logger_.onLogged((type, msg, context) => {
 
-module.exports = myLogger;
+});
+
+logger_.withFormat((type, msg, context) => msg)
+
+module.exports = logger_;

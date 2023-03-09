@@ -1,13 +1,9 @@
-const MySqlite =  require('nexo-npm-node-sqlite')
-const my_logger =  require('nexo-npm-node-logger')
+const _sqlite =  require('nexo-npm-node-sqlite')
+const logs_ =  require('nexo-npm-node-logger')
 
-MySqlite.url("./db.sqlite3")
-MySqlite.onConnected(async () => {
-    my_logger.i("Connected to the database");
-});
-MySqlite.onFailure((err) => {
-    my_logger.e("Unable to connect to the database", err)
-});
-MySqlite.initialize()
+_sqlite.url("./db.sqlite3")
+_sqlite.onConnected(() => logs_.i("Connected to the database"))
+_sqlite.onFailure(err => logs_.e("Unable to connect to the database", err))
+_sqlite.initialize()
 
-module.exports = MySqlite
+module.exports = _sqlite

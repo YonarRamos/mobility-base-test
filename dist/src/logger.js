@@ -1,14 +1,14 @@
 "use strict";
 
-var myLogger = require('nexo-npm-node-logger');
-myLogger.onError(function (error, _ref) {
+var logger_ = require('nexo-npm-node-logger');
+logger_.onError(function (error, _ref) {
   var filename = _ref.filename,
     line = _ref.line,
     column = _ref.column,
     timestamp = _ref.timestamp;
 });
-myLogger.onLogged(function (type, msg, context) {});
-myLogger.withFormat(function (type, msg, context) {
+logger_.onLogged(function (type, msg, context) {});
+logger_.withFormat(function (type, msg, context) {
   return msg;
 });
-module.exports = myLogger;
+module.exports = logger_;
