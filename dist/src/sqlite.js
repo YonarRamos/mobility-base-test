@@ -2,7 +2,11 @@
 
 var _sqlite = require('nexo-npm-node-sqlite');
 var logs_ = require('nexo-npm-node-logger');
-_sqlite.url("./db.sqlite3");
+_sqlite.setConnection({
+  filename: "/src/services/db/db.sqlite3"
+});
+_sqlite.setMigrationsUrl("./src/services/db/migrations");
+_sqlite.setSeedsUrl("./src/services/db/seeds");
 _sqlite.onConnected(function () {
   return logs_.i("Connected to the database");
 });
