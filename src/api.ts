@@ -34,13 +34,8 @@ _api.onEnd((request, response) => {
    return _logger.i(`- END - (${request.id}) ${request.method} ${request.endpoint} with code ${response.code} in ${Number(new Date()) - request.timestamp}ms`);
 });
 
-// Función que transforma el identificador de mongo en un identificador genérico
-// con tal de ocultar en el servicio el uso la base de datos de mongo.
-function transformId(entity) {
-    if (!entity) return null;
-    entity.id = entity._id;
-    entity._id = undefined;
-    return entity;
-}
+_api.swaggerDirectory('./src/routes/*.js');
+_api.swaggerTitle('Noticias/Consultas API');
+_api.enableSwagger();
 
 module.exports = _api;
